@@ -1,9 +1,10 @@
 Package: io.github.ice21415.aimehcetrace
 Name: Aime HCE Trace
-Version: 0.1.0
+Version: 0.1.1
 Architecture: iphoneos-arm
 Description: Metadata-only nfcd HCE diagnostic; not card emulation.
 Maintainer: ice21415
 Author: ice21415
 Section: Tweaks
 Depends: mobilesubstrate
+

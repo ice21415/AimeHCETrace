@@ -15,4 +15,11 @@ Full removal requires uninstalling and restarting the affected service/device.
 No automatic activation or service restart scripts are packaged.
 Only synchronous readAPDU is observed; async activity may bypass these hooks.
 
+Version 0.1.1 writes `/var/tmp/aime-hce-trace.log`: `loaded`, `disabled`,
+`hook_missing`, `hook_abi_mismatch`, `hook_installed`, and `call` events include
+timestamps and process IDs. The file is append-only, mode 0600 on creation,
+rejects symlinks, and stops writing at 256 KiB. Failure to open it falls back
+to NSLog. A missing log does not distinguish missing injection from denied
+file access. `hook_installed` confirms a saved original IMP, not an RF transaction.
+
 No credentials, SSH scripts, card data, SDKs or firmware are included.
