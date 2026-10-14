@@ -23,3 +23,16 @@ to NSLog. A missing log does not distinguish missing injection from denied
 file access. `hook_installed` confirms a saved original IMP, not an RF transaction.
 
 No credentials, SSH scripts, card data, SDKs or firmware are included.
+
+## RootHide system-daemon paths
+
+On the tested device, SSH runs inside the jailbreak filesystem while nfcd uses
+the system filesystem. In that SSH namespace, use
+`/rootfs/private/var/tmp/aime-hce-trace.enabled` for the opt-in flag and
+`/rootfs/private/var/tmp/aime-hce-trace.log` to read the log. A flag under the
+jailbreak's own `/var/tmp` was invisible to nfcd. Confirm the namespace on other
+devices before changing files. The tested nfcd runs as mobile (UID 501).
+
+Version 0.1.1 has been observed to log `loaded` and all three `hook_installed`
+events on iOS 17.1.2 after restart. This verifies initialization and saved
+original IMPs; no HCE invocation or RF card emulation has been demonstrated.
