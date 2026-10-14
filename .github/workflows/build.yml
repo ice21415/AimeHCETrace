@@ -36,7 +36,7 @@ jobs:
           cp packages/*.deb artifacts/
           dpkg-deb --extract packages/*.deb packaged
           find packaged -name AimeHCETrace.dylib -exec cp {} artifacts/ \;
-          lipo -verify_arch arm64 arm64e artifacts/AimeHCETrace.dylib
+          lipo artifacts/AimeHCETrace.dylib -verify_arch arm64 arm64e
           cp build.log artifacts/
           cd artifacts
           shasum -a 256 *.deb *.dylib > SHA256SUMS
