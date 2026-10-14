@@ -34,7 +34,9 @@ jobs:
           make package FINALPACKAGE=1 THEOS_PACKAGE_SCHEME="$scheme" 2>&1 | tee build.log
           mkdir -p artifacts
           cp packages/*.deb artifacts/
-          find .theos/obj -name AimeHCETrace.dylib -exec cp {} artifacts/ \;
+          dpkg-deb --extract packages/*.deb packaged
+          find packaged -name AimeHCETrace.dylib -exec cp {} artifacts/ \;
+          lipo -verify_arch arm64 arm64e artifacts/AimeHCETrace.dylib
           cp build.log artifacts/
           cd artifacts
           shasum -a 256 *.deb *.dylib > SHA256SUMS
